@@ -32,5 +32,5 @@ def rotate_around_z(points, theta):
 
     output = R@points.T
     if original_dim == 1:
-        return output.reshape(original_shape)
+        return output.T[0]
     return output.T
