@@ -6,8 +6,7 @@ def image_histogram(image):
     # Write code here
     hist = [0]*256
     image = np.asarray(image, dtype=int)
-    for i in range(image.shape[0]):
-        for j in range(image.shape[1]):
-            hist[image[i,j]] += 1
+    for pixel in image.flat:
+        hist[pixel]+=1
     return hist
     
