@@ -1,3 +1,4 @@
+import math
 def evaluate_shadow(production_log, shadow_log, criteria):
     """
     Evaluate whether a shadow model is ready for promotion.
@@ -15,7 +16,8 @@ def evaluate_shadow(production_log, shadow_log, criteria):
     acc_gain = shadow_acc - prod_acc
     sorted_latency = sorted(shadow_log, key = lambda x: x['latency_ms'])
     rank = 0.95*len(sorted_latency)
-    shadow_log_p95 = sorted_latency[int(rank)]['latency_ms']
+    idx = math.ceil(rank) - 1
+    shadow_log_p95 = sorted_latency[idx]['latency_ms']
     sh_prod_pred = 0
     for sh,prod in zip(shadow_log,production_log):
         if sh['prediction'] == prod['prediction']:
